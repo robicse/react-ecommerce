@@ -71,7 +71,7 @@ const ProductList = () => {
         <li>Name</li>
         <li>Price</li>
         <li>Category</li>
-        <li>Brand</li>
+        <li>Company</li>
         <li>Operation</li>
       </ul>
       {products && products?.length > 0 ? (
@@ -81,10 +81,10 @@ const ProductList = () => {
             <li>{item?.name}</li>
             <li>TK.{item?.price}</li>
             <li>{item?.category}</li>
-            <li>{item?.brand}</li>
+            <li>{item?.company}</li>
             <li>
-              <button onClick={() => deleteProduct(item.id)}>Delete</button>
-              <Link to={`/update/${item.id}`}>Update</Link>
+              <button onClick={() => deleteProduct(item._id)}>Delete</button>
+              <Link to={`/update/${item._id}`}>Update</Link>
             </li>
           </ul>
         ))

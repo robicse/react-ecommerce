@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const UpdateProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [brand, setBrand] = useState("");
+  const [company, setCompany] = useState("");
   const [category, setCategory] = useState("");
   // const [error, setError] = useState(false);
   const params = useParams();
@@ -21,15 +21,15 @@ const UpdateProduct = () => {
     console.warn(result);
     setName(result.name);
     setPrice(result.price);
-    setBrand(result.brand);
+    setCompany(result.company);
     setCategory(result.category);
   };
 
   const updateProduct = async () => {
-    console.warn(name, price, brand, category);
+    console.warn(name, price, company, category);
     let result = await fetch(`http://localhost:5000/product/${params.id}`, {
       method: "put",
-      body: JSON.stringify({ name, price, brand, category }),
+      body: JSON.stringify({ name, price, company, category }),
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -75,10 +75,10 @@ const UpdateProduct = () => {
       <input
         className="inputBox"
         type="text"
-        placeholder="Enter Product Brand"
-        value={brand}
+        placeholder="Enter Product Company"
+        value={company}
         onChange={(e) => {
-          setBrand(e.target.value);
+          setCompany(e.target.value);
         }}
       />
 

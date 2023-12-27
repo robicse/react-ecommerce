@@ -3,20 +3,20 @@ import React, { useState } from "react";
 const AddProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [brand, setBrand] = useState("");
+  const [company, setCompany] = useState("");
   const [category, setCategory] = useState("");
   const [error, setError] = useState(false);
 
   const addProduct = async () => {
-    if (!name || !price || !brand || !category) {
+    if (!name || !price || !company || !category) {
       setError(true);
       return false;
     }
-    console.warn(name, price, brand, category);
-    const user_id = JSON.parse(localStorage.getItem("user")).id;
+    console.warn(name, price, company, category);
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
     let result = await fetch("http://localhost:5000/add-product", {
       method: "post",
-      body: JSON.stringify({ name, price, brand, category, user_id }),
+      body: JSON.stringify({ name, price, category, company, userId }),
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -67,14 +67,14 @@ const AddProduct = () => {
       <input
         className="inputBox"
         type="text"
-        placeholder="Enter Product Brand"
-        value={brand}
+        placeholder="Enter Product Company"
+        value={company}
         onChange={(e) => {
-          setBrand(e.target.value);
+          setCompany(e.target.value);
         }}
       />
-      {error && !brand && (
-        <span className="invalid-input">Enter Valid Brand!</span>
+      {error && !company && (
+        <span className="invalid-input">Enter Valid Company!</span>
       )}
       <button className="appButton" type="button" onClick={addProduct}>
         Add product
