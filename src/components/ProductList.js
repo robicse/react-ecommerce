@@ -48,9 +48,9 @@ const ProductList = () => {
         },
       });
       result = await result.json();
-      console.log("result", result.result);
+      console.log("result", result);
       if (result) {
-        setProducts(result.result);
+        setProducts(result);
       }
     } else {
       getProducts();
